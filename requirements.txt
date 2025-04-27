@@ -4,4 +4,5 @@ transformers==4.24.0
 torch==1.13.0
 Pillow
 Werkzeug==2.2.3
-flask-ngronk
+flask-ngrok
+pip install -r requirements.txt

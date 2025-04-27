@@ -62,3 +62,23 @@ def internal_error(error):
 # Run the app
 if __name__ == '__main__':
     app.run(debug=True)
+    import os
+from flask import Flask
+
+# Create a Flask instance
+app = Flask(__name__)
+
+# Define a simple route for the homepage
+@app.route('/')
+def hello_world():
+    return 'Hello, World!'
+
+# Run the app, using the PORT environment variable or default to 5000
+if __name__ == '__main__':
+    # Get the port from the environment variable (if set), default to 5000
+    port = int(os.environ.get('PORT', 5000))
+    
+    # Run the app on all available network interfaces (0.0.0.0)
+    # and on the specified port
+    app.run(host='0.0.0.0', port=port)
+

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from flask import Flask, jsonify, request, render_template_string
+from flask import Flask, render_template, request, jsonify, render_template_string
 from transformers import BlipProcessor, BlipForConditionalGeneration
 from PIL import Image
 import torch
@@ -9,9 +9,6 @@ import os
 
 # Initialize the Flask app
 app = Flask(__name__)
-
-# Use ngrok to expose the Flask app to the internet
-run_with_ngrok(app)  # This makes your app public
 
 # Load the model and processor
 processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-base")
@@ -117,7 +114,6 @@ def get_data():
 def post_data():
     if request.is_json:
         data = request.get_json()
-        # Process the data here (e.g., store it or use it)
         response = {
             "message": "Data received successfully",
             "received_data": data
@@ -126,7 +122,7 @@ def post_data():
     else:
         return jsonify({"error": "Request must be JSON"}), 400
 
-# A route to render the homepage with HTML directly in the app.py
+# Simple homepage route
 @app.route('/homepage')
 def homepage():
     return '''
@@ -156,5 +152,4 @@ def internal_error(error):
 
 # Run the app
 if __name__ == '__main__':
-    # Running the Flask app on 0.0.0.0 ensures it listens on all available network interfaces
     app.run(debug=True, host='0.0.0.0', port=5000)

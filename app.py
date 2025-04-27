@@ -31,6 +31,24 @@ def post_data():
     else:
         return jsonify({"error": "Request must be JSON"}), 400
 
+# A route to render the homepage with HTML directly in the app.py
+@app.route('/homepage')
+def homepage():
+    return '''
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Home Page</title>
+        </head>
+        <body>
+            <h1>Welcome to the Homepage!</h1>
+            <p>This is the homepage of your Flask app.</p>
+        </body>
+        </html>
+    '''
+
 # Error handling route for 404
 @app.errorhandler(404)
 def not_found(error):

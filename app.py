@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from flask import Flask, jsonify, request, render_template_string
-from flask_ngrok import run_with_ngrok
 from transformers import BlipProcessor, BlipForConditionalGeneration
 from PIL import Image
 import torch
